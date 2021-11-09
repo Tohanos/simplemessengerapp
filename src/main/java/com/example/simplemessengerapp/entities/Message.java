@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "message")
+@Table(name = "messages")
 public class Message {
     @Id
     @Column(name = "id")

@@ -6,11 +6,11 @@ import com.example.simplemessengerapp.entities.User;
 
 import java.util.List;
 
-public interface MessageService {
+public interface MessageDbService {
 
     Message getMessageById(Long id);
-    List<Message> getMessagesByUser(User user);
-    List<Message> getMessagesByUser(User user, int maxNum);
+    List<Message> getMessages(User user);
+    List<Message> getMessages(int maxNum);
     void storeMessage(Message message);
 
     Message fromDto(MessageDto messageDto);

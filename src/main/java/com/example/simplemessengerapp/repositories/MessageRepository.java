@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
     List<Message> findAllByUser(User user);
-    List<Message> findTopByOrderByDtDesc(User user, int limit);
+//    List<Message> findTopByOrderByDtDesc(User user, int limit);
 }

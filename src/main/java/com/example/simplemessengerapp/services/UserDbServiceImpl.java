@@ -10,22 +10,24 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserDbServiceImpl implements UserDbService {
 
     private final UserRepository repository;
 
-    public UserServiceImpl(UserRepository repository) {
+    public UserDbServiceImpl(UserRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public User getUserByUsername(String name) {
+    public User getUserByUsername(String name) throws NoSuchElementException{
         Optional<User> userOptional = repository.getUserByName(name);
         if (userOptional.isEmpty()) {
             throw new NoSuchElementException("User not found");
         }
         return userOptional.get();
     }
+
+
 
     @Override
     @Transactional
@@ -49,6 +51,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDto toDto(User user) {
         return null;
+    }
+
+    @Override
+    public boolean checkPassword(String name, String password) throws NoSuchElementException{
+        return getUserByUsername(name).getPassword().equals(password);
     }
 
 }

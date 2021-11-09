@@ -10,4 +10,12 @@ import lombok.Setter;
 public class MessageDto {
     private String name;
     private String message;
+
+    @Override
+    public String toString() {
+        return "MessageDto{" +
+                "name='" + name + '\'' +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }
