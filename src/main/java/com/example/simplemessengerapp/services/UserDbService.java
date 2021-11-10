@@ -12,6 +12,8 @@ public interface UserDbService {
 
     UserDto toDto(User user);
 
+    void deleteUser(User user);
+
     boolean checkPassword(String name, String password);
 
 }

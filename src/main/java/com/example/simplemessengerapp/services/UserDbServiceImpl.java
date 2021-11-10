@@ -14,6 +14,8 @@ public class UserDbServiceImpl implements UserDbService {
 
     private final UserRepository repository;
 
+    private final String ERROR_MESSAGE = "User not found";
+
     public UserDbServiceImpl(UserRepository repository) {
         this.repository = repository;
     }
@@ -22,7 +24,7 @@ public class UserDbServiceImpl implements UserDbService {
     public User getUserByUsername(String name) throws NoSuchElementException{
         Optional<User> userOptional = repository.getUserByName(name);
         if (userOptional.isEmpty()) {
-            throw new NoSuchElementException("User not found");
+            throw new NoSuchElementException(ERROR_MESSAGE);
         }
         return userOptional.get();
     }
@@ -50,7 +52,14 @@ public class UserDbServiceImpl implements UserDbService {
 
     @Override
     public UserDto toDto(User user) {
-        return null;
+        return new UserDto(user.getName(), user.getPassword());
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        if (repository.getUserByName(user.getName()).isPresent()) {
+            repository.delete(user);
+        }
     }
 
     @Override
