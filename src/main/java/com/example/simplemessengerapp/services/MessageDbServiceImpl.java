@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -26,16 +27,19 @@ public class MessageDbServiceImpl implements MessageDbService {
     }
 
     @Override
+    @Transactional
     public Message getMessageById(Long id) {
         return messageRepository.getById(id);
     }
 
     @Override
+    @Transactional
     public List<Message> getMessages(User user) {
         return messageRepository.findAllByUser(user);
     }
 
     @Override
+    @Transactional
     public List<Message> getMessages(int maxNum) {
 
         Page<Message> page = messageRepository.findAll(PageRequest.of(0, maxNum, Sort.by(Sort.Direction.DESC, "dt")));
@@ -43,8 +47,15 @@ public class MessageDbServiceImpl implements MessageDbService {
     }
 
     @Override
+    @Transactional
     public void storeMessage(Message message) {
         messageRepository.save(message);
+    }
+
+    @Override
+    @Transactional
+    public void deleteMessage(Message message) {
+        messageRepository.delete(message);
     }
 
     @Override

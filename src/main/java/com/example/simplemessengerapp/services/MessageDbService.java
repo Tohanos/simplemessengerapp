@@ -12,6 +12,7 @@ public interface MessageDbService {
     List<Message> getMessages(User user);
     List<Message> getMessages(int maxNum);
     void storeMessage(Message message);
+    void deleteMessage(Message message);
 
     Message fromDto(MessageDto messageDto);
     MessageDto toDto(Message message);

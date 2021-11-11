@@ -2,7 +2,6 @@ package com.example.simplemessengerapp.services;
 
 import com.example.simplemessengerapp.dto.UserDto;
 import com.example.simplemessengerapp.entities.User;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

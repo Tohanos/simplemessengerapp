@@ -6,6 +6,8 @@ import com.example.simplemessengerapp.entities.User;
 public interface UserDbService {
     User getUserByUsername(String name);
 
+    User getUserById(Long id);
+
     User registerNewUser(User user);
 
     User fromDto(UserDto userDto);

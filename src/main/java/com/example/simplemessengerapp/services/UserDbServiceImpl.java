@@ -21,6 +21,7 @@ public class UserDbServiceImpl implements UserDbService {
     }
 
     @Override
+    @Transactional
     public User getUserByUsername(String name) throws NoSuchElementException{
         Optional<User> userOptional = repository.getUserByName(name);
         if (userOptional.isEmpty()) {
@@ -29,6 +30,11 @@ public class UserDbServiceImpl implements UserDbService {
         return userOptional.get();
     }
 
+    @Override
+    @Transactional
+    public User getUserById(Long id) {
+        return repository.getById(id);
+    }
 
 
     @Override
@@ -56,6 +62,7 @@ public class UserDbServiceImpl implements UserDbService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(User user) {
         if (repository.getUserByName(user.getName()).isPresent()) {
             repository.delete(user);
