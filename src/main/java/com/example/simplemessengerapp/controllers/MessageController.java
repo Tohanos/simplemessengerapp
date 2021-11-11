@@ -39,10 +39,9 @@ public class MessageController {
                 return ResponseEntity.ok(messageParserService.parseMessage(messageDto).get().toString());
             }
             messageDbService.storeMessage(messageDbService.fromDto(messageDto));
+            return ResponseEntity.ok("Alright");
         }
-        return ResponseEntity.ok("Allright");
+        return ResponseEntity.status(401).body("Bad token");
     }
-
-
 
 }
