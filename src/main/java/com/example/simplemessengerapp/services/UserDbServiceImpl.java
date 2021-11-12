@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+//  Сервис для работы с пользователями в бд
 @Service
 public class UserDbServiceImpl implements UserDbService {
 

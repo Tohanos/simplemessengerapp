@@ -1,6 +1,5 @@
 package com.example.simplemessengerapp.controllers;
 
-import com.example.simplemessengerapp.dto.TokenDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,13 +38,13 @@ public class MessageControllerTest {
         ResponseEntity<String> result = this.restTemplate.postForEntity(uri, httpEntity, String.class);
 
         String[] responseStrings = result.getBody().split(":");
-        String token = responseStrings[1].replace("\"", "");
-        System.out.println(Arrays.toString(responseStrings));
+        String token = responseStrings[1].replace("\"", "").replace("}", "");
+
         url = "http://localhost:" + port + "/message";
         uri = new URI(url);
         messageToSend = "{\n" +
                 "  \"name\" : \"Petya\",\n" +
-                "  \"message\" : \"Allright then\"\n" +
+                "  \"message\" : \"Alright then\"\n" +
                 "}";
         headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
